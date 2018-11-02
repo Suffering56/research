@@ -1,5 +1,6 @@
 package com.company.research.experiments;
 
+import com.company.research.ConcurrentUtils;
 import com.company.research.exceptions.UnattainablePointException;
 import org.junit.Test;
 
@@ -61,7 +62,7 @@ public class Concurrency1 {
             System.out.println("Яйцо!");
         }, 0, 1);
 
-        sleepInfinity();
+        ConcurrentUtils.sleepInfinity();
     }
 
     @Test
@@ -76,7 +77,7 @@ public class Concurrency1 {
             System.out.println("Яйцо!");
         }, 0, 1);
 
-        sleepInfinity();
+        ConcurrentUtils.sleepInfinity();
     }
 
     @Test
@@ -95,7 +96,7 @@ public class Concurrency1 {
             System.out.println("Яйцо!");
         }, 0, 1);
 
-        sleepInfinity();
+        ConcurrentUtils.sleepInfinity();
     }
 
     private long slowFunction() {
@@ -178,25 +179,11 @@ public class Concurrency1 {
     }
 
 
-    private void sleepInfinity() throws InterruptedException {
-        while (true) {
-           TimeUnit.SECONDS.sleep(1);
-        }
-    }
-
-    private void sleep(long sleepMillis, int sleepNanos) {
-        try {
-            Thread.sleep(sleepMillis, sleepNanos);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     private Thread executeInBackgroundThread(Runnable runnable, long sleepMillis, int sleepNanos) {
         Thread thread = new Thread(() -> {
             while (true) {
                 runnable.run();
-                sleep(sleepMillis, sleepNanos);
+                ConcurrentUtils.sleep(sleepMillis, sleepNanos);
             }
         });
         thread.start();

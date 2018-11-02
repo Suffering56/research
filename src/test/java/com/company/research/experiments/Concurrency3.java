@@ -1,5 +1,6 @@
 package com.company.research.experiments;
 
+import com.company.research.ConcurrentUtils;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
@@ -20,7 +21,7 @@ public class Concurrency3 {
             int threadIndex = i;
             executorService.submit(() -> {
                 synchronized (this) {
-                    slowFunction(0.1);
+                    ConcurrentUtils.slowFunction(0.1);
                     System.out.println("t[" + threadIndex + "]: beforeWait");
                     waitCounter.incrementAndGet();
                     wait();
@@ -52,7 +53,7 @@ public class Concurrency3 {
             int threadIndex = i;
             executorService.submit(() -> {
                 synchronized (this) {
-                    slowFunction(0.1);
+                    ConcurrentUtils.slowFunction(0.1);
                     System.out.println("t[" + threadIndex + "]: beforeWait");
                     waitCounter.incrementAndGet();
                     wait();
@@ -73,26 +74,5 @@ public class Concurrency3 {
             }
         }
         System.out.println("Main thread completed successfully!");
-    }
-
-    private long slowFunction() {
-        return slowFunction(1.0);
-    }
-
-    private long slowFunction(double ratio) {
-        long x = 1;
-        long n = (long) (1000000000L + 5000000000L * Math.random() * ratio);
-        for (long i = 2; i < n; i++) {
-            x = x * i;
-        }
-        return x;
-    }
-
-    private void sleep(long sleepMillis, int sleepNanos) {
-        try {
-            Thread.sleep(sleepMillis, sleepNanos);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }
