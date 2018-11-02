@@ -166,6 +166,27 @@ public class Concurrency1 {
         System.out.println("main thread completed successfully!");
     }
 
+    @Test
+    public void test3_4_readingYield() throws InterruptedException {
+        Thread backgroundThread = new Thread(() -> {
+            int i = 0;
+            System.out.println("background thread started");
+            while (!interruptedUnsafe) {
+                i++;
+                Thread.yield(); // ~~ TimeUnit.NANOSECONDS.sleep(1);
+            }
+            System.out.println("background thread completed successfully: i=" + i);
+        });
+        backgroundThread.start();
+
+        TimeUnit.SECONDS.sleep(3);
+        interruptedUnsafe = true;
+        System.out.println("isInterrupted = true");
+
+        backgroundThread.join();
+        System.out.println("main thread completed successfully!");
+    }
+
     private boolean interruptedUnsafe = false;
     private boolean interruptedSync = false;
     private volatile boolean interruptedVolatile = false;
