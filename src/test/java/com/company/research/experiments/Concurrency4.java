@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @SuppressWarnings("Duplicates")
-public class Concurrency5 {
+public class Concurrency4 {
 
     /**
      * ScheduledExecutorService
