@@ -74,12 +74,15 @@ public class Concurrency5 {
         for (int i = 0; i < threadsCount; i++) {
             final int threadIndex = i;
             executorService.submit(() -> {
-                System.out.println("[" + threadIndex + "]: before lock");
-                locker.lock();
-                System.out.println("[" + threadIndex + "]: after lock");
-                Thread.sleep(1000);
-                System.out.println("[" + threadIndex + "]: locker.unlock ");
-                locker.unlock();
+                try {
+                    System.out.println("[" + threadIndex + "]: before lock");
+                    locker.lock();
+                    System.out.println("[" + threadIndex + "]: after lock");
+                    Thread.sleep(1000);
+                    System.out.println("[" + threadIndex + "]: locker.unlock ");
+                } finally {
+                    locker.unlock();
+                }
                 return null;
             });
         }
