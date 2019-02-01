@@ -13,10 +13,10 @@ import java.nio.channels.WritableByteChannel;
 import java.util.*;
 
 //@SpringBootApplication
-@SuppressWarnings("Duplicates")
-@Warmup(iterations = 7)
-@Fork(warmups = 1, value = 1)
-@Measurement(iterations = 7)
+//@SuppressWarnings("Duplicates")
+//@Warmup(iterations = 7)
+//@Fork(warmups = 1, value = 1)
+//@Measurement(iterations = 7)
 public class App {
 
     private static Map<Integer, Map<Integer, String>> mapOfMap = new HashMap<Integer, Map<Integer, String>>(8) {{
@@ -132,132 +132,132 @@ public class App {
 //        return testBufferedInputStream(16384);
 //    }
 
-    @Benchmark
-    public int testBufferedInputStream08192() throws IOException {
-        return testBufferedInputStream(8192);
-    }
-
-    @Benchmark
-    public int testBufferedInputStream04096() throws IOException {
-        return testBufferedInputStream(4096);
-    }
-
-    @Benchmark
-    public int testBufferedInputStream02048() throws IOException {
-        return testBufferedInputStream(2048);
-    }
-
-    @Benchmark
-    public int testBufferedInputStream01024() throws IOException {
-        return testBufferedInputStream(1024);
-    }
-
-    @Benchmark
-    public int testBufferedInputStream00512() throws IOException {
-        return testBufferedInputStream(512);
-    }
-
-    @Benchmark
-    public int testBufferedInputStream00256() throws IOException {
-        return testBufferedInputStream(256);
-    }
-
-    @Benchmark
-    public int testBufferedInputStream00128() throws IOException {
-        return testBufferedInputStream(128);
-    }
-
-    @Benchmark
-    public int testBufferedInputStream00064() throws IOException {
-        return testBufferedInputStream(64);
-    }
-
-
-    @Benchmark
-    public int testChannelGzip08192() throws IOException {
-        return testChannelGzip(8192);
-    }
-
-    @Benchmark
-    public int testChannelGzip04096() throws IOException {
-        return testChannelGzip(4096);
-    }
-
-    @Benchmark
-    public int testChannelGzip02048() throws IOException {
-        return testChannelGzip(2048);
-    }
-
-    @Benchmark
-    public int testChannelGzip01024() throws IOException {
-        return testChannelGzip(1024);
-    }
-
-    @Benchmark
-    public int testChannelGzip00512() throws IOException {
-        return testChannelGzip(512);
-    }
-
-    @Benchmark
-    public int testChannelGzip00256() throws IOException {
-        return testChannelGzip(256);
-    }
-
-    @Benchmark
-    public int testChannelGzip00128() throws IOException {
-        return testChannelGzip(128);
-    }
-
-    @Benchmark
-    public int testChannelGzip00064() throws IOException {
-        return testChannelGzip(64);
-    }
-
-    //    @Benchmark
-//    public int testChannelGzip00001() throws IOException {
-//        return testChannelGzip(1);
+//    @Benchmark
+//    public int testBufferedInputStream08192() throws IOException {
+//        return testBufferedInputStream(8192);
 //    }
-
-
-    @Benchmark
-    public int readByBufferWithoutChannels8192() throws IOException {
-        return readByBufferWithoutChannels(8192);
-    }
-
-    @Benchmark
-    public int readByBufferWithoutChannels4096() throws IOException {
-        return readByBufferWithoutChannels(4096);
-    }
-
-    @Benchmark
-    public int readByBufferWithoutChannels2048() throws IOException {
-        return readByBufferWithoutChannels(2048);
-    }
-
-    @Benchmark
-    public int readByBufferWithoutChannels1024() throws IOException {
-        return readByBufferWithoutChannels(1024);
-    }
-
-    @Benchmark
-    public int readByBufferWithoutChannels0512() throws IOException {
-        return readByBufferWithoutChannels(512);
-    }
-
-    @Benchmark
-    public int readByBufferWithoutChannels0256() throws IOException {
-        return readByBufferWithoutChannels(256);
-    }
-
-    @Benchmark
-    public int readByBufferWithoutChannels0128() throws IOException {
-        return readByBufferWithoutChannels(128);
-    }
-
-    @Benchmark
-    public int readByBufferWithoutChannels0064() throws IOException {
-        return readByBufferWithoutChannels(64);
-    }
+//
+//    @Benchmark
+//    public int testBufferedInputStream04096() throws IOException {
+//        return testBufferedInputStream(4096);
+//    }
+//
+//    @Benchmark
+//    public int testBufferedInputStream02048() throws IOException {
+//        return testBufferedInputStream(2048);
+//    }
+//
+//    @Benchmark
+//    public int testBufferedInputStream01024() throws IOException {
+//        return testBufferedInputStream(1024);
+//    }
+//
+//    @Benchmark
+//    public int testBufferedInputStream00512() throws IOException {
+//        return testBufferedInputStream(512);
+//    }
+//
+//    @Benchmark
+//    public int testBufferedInputStream00256() throws IOException {
+//        return testBufferedInputStream(256);
+//    }
+//
+//    @Benchmark
+//    public int testBufferedInputStream00128() throws IOException {
+//        return testBufferedInputStream(128);
+//    }
+//
+//    @Benchmark
+//    public int testBufferedInputStream00064() throws IOException {
+//        return testBufferedInputStream(64);
+//    }
+//
+//
+//    @Benchmark
+//    public int testChannelGzip08192() throws IOException {
+//        return testChannelGzip(8192);
+//    }
+//
+//    @Benchmark
+//    public int testChannelGzip04096() throws IOException {
+//        return testChannelGzip(4096);
+//    }
+//
+//    @Benchmark
+//    public int testChannelGzip02048() throws IOException {
+//        return testChannelGzip(2048);
+//    }
+//
+//    @Benchmark
+//    public int testChannelGzip01024() throws IOException {
+//        return testChannelGzip(1024);
+//    }
+//
+//    @Benchmark
+//    public int testChannelGzip00512() throws IOException {
+//        return testChannelGzip(512);
+//    }
+//
+//    @Benchmark
+//    public int testChannelGzip00256() throws IOException {
+//        return testChannelGzip(256);
+//    }
+//
+//    @Benchmark
+//    public int testChannelGzip00128() throws IOException {
+//        return testChannelGzip(128);
+//    }
+//
+//    @Benchmark
+//    public int testChannelGzip00064() throws IOException {
+//        return testChannelGzip(64);
+//    }
+//
+//    //    @Benchmark
+////    public int testChannelGzip00001() throws IOException {
+////        return testChannelGzip(1);
+////    }
+//
+//
+//    @Benchmark
+//    public int readByBufferWithoutChannels8192() throws IOException {
+//        return readByBufferWithoutChannels(8192);
+//    }
+//
+//    @Benchmark
+//    public int readByBufferWithoutChannels4096() throws IOException {
+//        return readByBufferWithoutChannels(4096);
+//    }
+//
+//    @Benchmark
+//    public int readByBufferWithoutChannels2048() throws IOException {
+//        return readByBufferWithoutChannels(2048);
+//    }
+//
+//    @Benchmark
+//    public int readByBufferWithoutChannels1024() throws IOException {
+//        return readByBufferWithoutChannels(1024);
+//    }
+//
+//    @Benchmark
+//    public int readByBufferWithoutChannels0512() throws IOException {
+//        return readByBufferWithoutChannels(512);
+//    }
+//
+//    @Benchmark
+//    public int readByBufferWithoutChannels0256() throws IOException {
+//        return readByBufferWithoutChannels(256);
+//    }
+//
+//    @Benchmark
+//    public int readByBufferWithoutChannels0128() throws IOException {
+//        return readByBufferWithoutChannels(128);
+//    }
+//
+//    @Benchmark
+//    public int readByBufferWithoutChannels0064() throws IOException {
+//        return readByBufferWithoutChannels(64);
+//    }
 
 
     public int testBufferedInputStream(int bufferSize) throws IOException {
@@ -398,8 +398,6 @@ public class App {
             return os.toByteArray();
         }
     }
-
-
 
     @AllArgsConstructor
     static class Point {
