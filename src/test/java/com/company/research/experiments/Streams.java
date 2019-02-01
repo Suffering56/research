@@ -16,91 +16,6 @@ import java.util.stream.Stream;
 @SuppressWarnings({"NullableProblems", "Convert2MethodRef", "MismatchedQueryAndUpdateOfCollection"})
 public class Streams {
 
-    class Person implements Comparable<Person> {
-        private String name;
-        private int age;
-        private Gender gender;
-
-        public Person(String name, int age, Gender gender) {
-            this.name = name;
-            this.age = age;
-            this.gender = gender;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public Gender getGender() {
-            return gender;
-        }
-
-        @Override
-        public String toString() {
-            return MoreObjects.toStringHelper(this)
-                    .add("name", name)
-                    .add("age", age)
-                    .add("gender", gender)
-                    .toString();
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-
-            if (o == null || getClass() != o.getClass()) return false;
-
-            Person person = (Person) o;
-
-            return new EqualsBuilder()
-                    .append(age, person.age)
-                    .append(name, person.name)
-                    .append(gender, person.gender)
-                    .isEquals();
-        }
-
-        @Override
-        public int hashCode() {
-            return new HashCodeBuilder(17, 37)
-                    .append(name)
-                    .append(age)
-                    .append(gender)
-                    .toHashCode();
-        }
-
-        @Override
-        public int compareTo(Person other) {
-            return Integer.compare(this.getAge(), other.getAge());
-        }
-    }
-
-    private enum Gender {
-        MALE, FEMALE
-    }
-
-    private List<Person> personList;
-
-    @Before
-    public void init() {
-        personList = new ArrayList<Person>() {{
-            add(new Person("Victoria", 12, Gender.FEMALE));
-            add(new Person("Kate", 31, Gender.FEMALE));
-            add(new Person("John", 10, Gender.MALE));
-            add(new Person("Elizabeth", 16, Gender.FEMALE));
-            add(new Person("Jack", 41, Gender.MALE));
-            add(new Person("Tom", 25, Gender.MALE));
-            add(new Person("Lucas", 17, Gender.MALE));
-            add(new Person("Robert", 18, Gender.MALE));
-            add(new Person("Jessica", 32, Gender.FEMALE));
-            add(new Person("Sarah", 43, Gender.FEMALE));
-            add(new Person("Ted", 23, Gender.MALE));
-        }};
-    }
-
     @Test
     public void test1() {
         Map<Gender, List<Person>> map = personList.stream()
@@ -232,5 +147,110 @@ public class Streams {
         assert groupingByWithValueMapper.get(Gender.MALE).get(0).equals("John");
         assert groupingByWithValueMapper.get(Gender.MALE).get(5).equals("Ted");
         assert groupingByWithValueMapper.get(Gender.FEMALE).get(2).equals("Elizabeth");
+    }
+
+    @Test
+    public void testFindFirstAndFindAny() {
+        Optional<Person> any = personList.stream()
+                .parallel()
+                .filter(person -> person.getAge() < 15)
+                .findFirst();
+
+        any.ifPresent(System.out::println);
+    }
+
+    @Test
+    public void testStreamIterateWithLimit() {
+        List<String> opponents = Stream.iterate(0, i -> i + 1)
+                .limit(personList.size())
+                .map(i -> personList.get(i).toString())
+                .collect(Collectors.toList());
+
+        opponents.forEach(System.out::println);
+    }
+
+    private List<Person> personList;
+
+    @Before
+    public void init() {
+        personList = new ArrayList<Person>() {{
+            add(new Person("Victoria", 12, Gender.FEMALE));
+            add(new Person("Kate", 31, Gender.FEMALE));
+            add(new Person("John", 10, Gender.MALE));
+            add(new Person("Elizabeth", 16, Gender.FEMALE));
+            add(new Person("Jack", 41, Gender.MALE));
+            add(new Person("Tom", 25, Gender.MALE));
+            add(new Person("Lucas", 17, Gender.MALE));
+            add(new Person("Robert", 18, Gender.MALE));
+            add(new Person("Jessica", 32, Gender.FEMALE));
+            add(new Person("Sarah", 43, Gender.FEMALE));
+            add(new Person("Ted", 23, Gender.MALE));
+        }};
+    }
+
+    class Person implements Comparable<Person> {
+        private String name;
+        private int age;
+        private Gender gender;
+
+        public Person(String name, int age, Gender gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public Gender getGender() {
+            return gender;
+        }
+
+        @Override
+        public String toString() {
+            return MoreObjects.toStringHelper(this)
+                    .add("name", name)
+                    .add("age", age)
+                    .add("gender", gender)
+                    .toString();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Person person = (Person) o;
+
+            return new EqualsBuilder()
+                    .append(age, person.age)
+                    .append(name, person.name)
+                    .append(gender, person.gender)
+                    .isEquals();
+        }
+
+        @Override
+        public int hashCode() {
+            return new HashCodeBuilder(17, 37)
+                    .append(name)
+                    .append(age)
+                    .append(gender)
+                    .toHashCode();
+        }
+
+        @Override
+        public int compareTo(Person other) {
+            return Integer.compare(this.getAge(), other.getAge());
+        }
+    }
+
+    private enum Gender {
+        MALE, FEMALE
     }
 }
