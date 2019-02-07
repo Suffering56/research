@@ -1,12 +1,10 @@
 package com.company.research;
 
 import lombok.AllArgsConstructor;
+import org.openjdk.jmh.annotations.Fork;
 import org.openjdk.jmh.runner.RunnerException;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.*;
 
 //@SpringBootApplication
@@ -122,6 +120,12 @@ public class App {
     public static void main(String[] args) throws IOException, RunnerException, InterruptedException {
 //        SpringApplication.run(App.class, args);
 //        org.openjdk.jmh.Main.main(args);
+
+        try (InputStream in = null) {
+
+        }
+
+        System.out.println("after");
     }
 
 

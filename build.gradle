@@ -46,7 +46,8 @@ dependencies {
 
     compile(
             [group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.19'],
-            [group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.19']
+            [group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.19'],
+            [group: 'org.postgresql', name: 'postgresql', version: '42.2.2']
     )
 
     runtimeOnly('org.springframework.boot:spring-boot-devtools')

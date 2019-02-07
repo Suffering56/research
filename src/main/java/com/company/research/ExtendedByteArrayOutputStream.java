@@ -4,6 +4,7 @@ package com.company.research;
 import javax.annotation.Nonnull;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * Расширение {@link ByteArrayOutputStream} для работы с его буфером напрямую, что позволяет избегать добоплнительного копирования буфера и синхронизации.
@@ -34,5 +35,11 @@ public class ExtendedByteArrayOutputStream extends ByteArrayOutputStream {
     @Nonnull
     public ByteArrayInputStream createInputStream() {
         return new ByteArrayInputStream(getDataRef(), 0, size());
+    }
+
+    @Override
+    public void close() throws IOException {
+        System.out.println("stream closed");
+        super.close();
     }
 }

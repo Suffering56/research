@@ -20,7 +20,7 @@ import static com.company.research.BytesGenerator.getRandomBytes;
 @SuppressWarnings("Duplicates")
 @State(Scope.Benchmark)
 //@Warmup(iterations = 15)
-//@Fork(warmups = 1, value = 1)
+@Fork(warmups = 1, value = 1)
 //@Measurement(iterations = 15)
 public class InputStreamReadingBenchmark {
 
