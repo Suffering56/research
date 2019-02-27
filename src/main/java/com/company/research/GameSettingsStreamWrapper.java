@@ -1,8 +1,6 @@
 package com.company.research;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import javafx.util.Pair;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
