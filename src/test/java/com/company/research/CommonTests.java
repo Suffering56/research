@@ -1,8 +1,12 @@
 package com.company.research;
 
+import com.google.common.collect.Lists;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Stream;
 
 @SuppressWarnings("ALL")
 public class CommonTests {
@@ -70,6 +74,15 @@ public class CommonTests {
         }
 
         return minIndex;
+    }
+
+    @Test
+    public void testStreamIterator() {
+        List<Integer> list = Lists.newArrayList(1,2,3,4,5,6);
+        Stream<Integer> stream = list.stream();
+
+        Iterator<Integer> iterator = list.stream().iterator();
+        Iterator<Integer> iterator2 = list.stream().iterator();
     }
 
 

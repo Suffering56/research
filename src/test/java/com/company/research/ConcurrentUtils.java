@@ -18,6 +18,10 @@ public class ConcurrentUtils {
         }
     }
 
+    public static void sleep(long sleepMillis) {
+        sleep(sleepMillis, 0);
+    }
+
     public static long slowFunction(double ratio) {
         long x = 1;
         long n = (long) (1000000000L + 5000000000L * Math.random() * ratio);

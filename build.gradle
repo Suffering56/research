@@ -44,6 +44,9 @@ dependencies {
     compile('commons-io:commons-io:2.4')
     compile('com.google.guava:guava:25.0-jre')
 
+    compile 'org.eclipse.collections:eclipse-collections-api:9.1.0'
+    compile 'org.eclipse.collections:eclipse-collections:9.1.0'
+
     compile(
             [group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.19'],
             [group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.19'],

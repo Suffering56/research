@@ -1,10 +1,13 @@
 package com.company.research.experiments;
 
+import com.company.research.ConcurrentUtils;
 import org.junit.Test;
 
 import java.util.concurrent.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import static com.company.research.ConcurrentUtils.sleep;
 
 @SuppressWarnings("Duplicates")
 public class Concurrency5 {
@@ -90,6 +93,57 @@ public class Concurrency5 {
         executorService.shutdown();
         while (!executorService.awaitTermination(2, TimeUnit.SECONDS)) ;
 
+        System.out.println("Main thread successfully completed!");
+    }
+
+    @Test
+    public void reentrantLockTest2() throws InterruptedException {
+        Lock locker = new ReentrantLock();
+
+        new Thread(() -> {
+            System.out.println("before1");
+            locker.lock();
+            System.out.println("action1");
+            sleep(3000);
+            locker.unlock();
+            System.out.println("after1");
+        }).start();
+
+        new Thread(() -> {
+            sleep(1000);
+            System.out.println("before2");
+            locker.lock();
+            System.out.println("action2");
+            locker.unlock();
+            System.out.println("after2");
+        }).start();
+
+        sleep(10000);
+        System.out.println("Main thread successfully completed!");
+    }
+
+    @Test
+    public void reentrantLockTest3() {
+
+        new Thread(() -> {
+            System.out.println("before1");
+            synchronized (this) {
+                System.out.println("action1");
+                sleep(3000);
+            }
+            System.out.println("after1");
+        }).start();
+
+        new Thread(() -> {
+            sleep(1000);
+            System.out.println("before2");
+            synchronized (this) {
+                System.out.println("action2");
+            }
+            System.out.println("after2");
+        }).start();
+
+        sleep(10000);
         System.out.println("Main thread successfully completed!");
     }
 

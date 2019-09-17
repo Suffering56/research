@@ -18,19 +18,19 @@ import java.nio.channels.WritableByteChannel;
 import static com.company.research.BytesGenerator.getRandomBytes;
 
 @SuppressWarnings("Duplicates")
-@State(Scope.Benchmark)
-//@Warmup(iterations = 15)
-@Fork(warmups = 1, value = 1)
-//@Measurement(iterations = 15)
+//@State(Scope.Benchmark)
+//@Warmup(iterations = 7)
+//@Fork(warmups = 1, value = 0b1)
+//@Measurement(iterations = 7)
 public class InputStreamReadingBenchmark {
 
 //    @Param({"1", "2", "4", "8", "16", "32", "64", "128", "256", "512", "1024", "2048", "4096", "8192", "16384"})
     @Param({"256", "512", "1024", "2048", "4096", "8192"})
     private int bufferSize;
-
-    public static void main(String[] args) throws IOException, RunnerException {
-        org.openjdk.jmh.Main.main(args);
-    }
+//
+//    public static void main(String[] args) throws IOException, RunnerException {
+//        org.openjdk.jmh.Main.main(args);
+//    }
 
 //    @Benchmark
 //    public void testReadByIOUtilsToByteArray(InputStreamReadingBenchmark state, Blackhole blackhole) throws IOException {
@@ -38,7 +38,7 @@ public class InputStreamReadingBenchmark {
 //        blackhole.consume(result);
 //    }
 
-    @Benchmark
+//    @Benchmark
     public void testReadByAssistanceData(InputStreamReadingBenchmark state, Blackhole blackhole) throws IOException {
         String result = readByAssistantData(state.bufferSize);
         blackhole.consume(result);
